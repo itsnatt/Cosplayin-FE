@@ -1,1 +1,2 @@
 git rm --cached node_modules
+node_modules/.cache/babel-loader/08c0d03cde8e31181331cceccfadb9b8539d2ca5d535137dddd72c27d60b14a6.json
