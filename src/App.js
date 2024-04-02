@@ -4,7 +4,7 @@ import LoginForm from './components/LoginForm';
 function App() {
   return (
     <div>
-      <LoginForm />
+      <PeopleList />
     </div>
   );
 }
