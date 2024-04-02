@@ -1,9 +1,1 @@
-git rm --cached node_modules
-node_modules/.cache/babel-loader/08c0d03cde8e31181331cceccfadb9b8539d2ca5d535137dddd72c27d60b14a6.json
-node_modules/.cache/default-development/index.pack.old
-node_modules/.cache/default-development/index.pack
-node_modules/.cache/default-development/3.pack
-node_modules/.cache/default-development/1.pack
-node_modules/.cache/babel-loader/f03e004b7f716feaa6b6bef25764c0a22d8844eab17110674ec90367d326c266.json
-node_modules/.cache/babel-loader/4fc3d0e92e83e83c376bb3e0e69feaa7ebec5b4a09674cf049c8e46721692bb5.json
-node_modules/.cache/.eslintcache
+node_modules/
