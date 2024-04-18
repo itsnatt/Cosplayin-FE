@@ -88,7 +88,7 @@ export default function InsertData({ provinces, districts, subdistricts }) {
                         ))}
                     </select>
                 </div>
-                <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Submit</button>
+                <button type="submit" className="px-4 py-2 bg-blue-500 text-grey rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Submit</button>
             </form>
         </div>
     );
