@@ -13,9 +13,9 @@ interface Product {
   ukuran1: string;
   ukuran2: string;
   ukuran3: string;
-  kategori1: string;
-  kategori2: string;
-  kategori3: string;
+  katagori1: string;
+  katagori2: string;
+  katagori3: string;
   link_produk: string;
   gambar: string;
 }
@@ -23,6 +23,8 @@ interface Product {
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [sizes, setSizes] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,6 +40,8 @@ const ProductList: React.FC = () => {
         const response = await axios.get('https://api.cospl.my.id/api/product/');
         setProducts(response.data);
         setFilteredProducts(response.data);
+        setCategories(getUniqueCategories(response.data));
+        setSizes(getUniqueSizes(response.data));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -48,13 +52,23 @@ const ProductList: React.FC = () => {
     fetchProducts();
   }, []);
 
+  const getUniqueCategories = (products: Product[]) => {
+    const allCategories = products.flatMap(product => [product.katagori1, product.katagori2, product.katagori3]);
+    return Array.from(new Set(allCategories)).filter(Boolean);
+  };
+
+  const getUniqueSizes = (products: Product[]) => {
+    const allSizes = products.flatMap(product => [product.ukuran1, product.ukuran2, product.ukuran3]);
+    return Array.from(new Set(allSizes)).filter(Boolean);
+  };
+
   const filterProducts = () => {
     const filtered = products.filter(product => {
       const matchesKeyword = product.namaproduk.toLowerCase().includes(keyword.toLowerCase());
       const matchesCategory = category ? (
-        product.kategori1 === category ||
-        product.kategori2 === category ||
-        product.kategori3 === category
+        product.katagori1 === category ||
+        product.katagori2 === category ||
+        product.katagori3 === category
       ) : true;
       const matchesSize = size ? (
         product.ukuran1 === size ||
@@ -107,6 +121,8 @@ const ProductList: React.FC = () => {
           size={size}
           setSize={setSize}
           handleSearch={handleSearch}
+          categories={categories}
+          sizes={sizes}
         />
       </div>
       <div className='pt-10 bg-gray-100'>
@@ -128,7 +144,7 @@ const ProductList: React.FC = () => {
           </span>
           <button
             onClick={handleNextPage}
-            disabled={startIndex + itemsPerPage >= currentProducts.length}
+            disabled={startIndex + itemsPerPage >= filteredProducts.length}
             className={`${styles.paginationButton}`}
           >
             Next
