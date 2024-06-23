@@ -1,0 +1,14 @@
+/* styles/ProductCard.module.css */
+.productCard {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+  }
+  
+  .productCard img {
+    max-width: 100%;
+    height: auto;
+  }
+  

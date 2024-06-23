@@ -1,5 +1,10 @@
+// pages/_app.js
+import '../styles/global.css'
 import 'tailwindcss/tailwind.css'
+import React from "react"
 
-export default function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
+
+export default MyApp
