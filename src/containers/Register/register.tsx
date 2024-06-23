@@ -35,25 +35,14 @@ const Register: React.FC = () => {
           </a>
         </Link>
             <form action="#" className="mt-8 grid grid-cols-6 gap-6">
-              <div className="col-span-6 sm:col-span-3">
+              <div className="col-span-6">
                 <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
-                  First Name
+                  Username
                 </label>
                 <input
                   type="text"
                   id="FirstName"
                   name="first_name"
-                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                />
-              </div>
-              <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  id="LastName"
-                  name="last_name"
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
@@ -104,7 +93,7 @@ const Register: React.FC = () => {
                   By creating an account, you agree to our
                   <a href="#" className="text-gray-700 underline"> terms and conditions </a>
                   and
-                  <a href="#" className="text-gray-700 underline">privacy policy</a>.
+                  <a href="#" className="text-gray-700 underline"> privacy policy</a>.
                 </p>
               </div>
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
@@ -115,7 +104,8 @@ const Register: React.FC = () => {
                 </button>
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                   Already have an account?
-                  <a href="login.html" className="text-gray-700 underline">Log in</a>.
+                  <Link href="/login" className="text-blue-600 font-semibold"> Login</Link>
+                  
                 </p>
               </div>
             </form>
