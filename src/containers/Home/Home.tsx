@@ -88,7 +88,6 @@ import ProductList from "./Product/Product";
 const Home = () => {
   return (
     <Layout>
-      <h3>Welcome</h3>
       <ProductList />
     </Layout>
   );

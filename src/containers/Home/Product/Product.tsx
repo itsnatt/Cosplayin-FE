@@ -35,13 +35,14 @@ const ProductList = () => {
 	}
 
 	return (
+		<>
 		<div className='pt-10 bg-gray-100'>
 			<div className={styles.productList}>
 				{products.map((product) => (
 					<ProductCard key={product.id} product={product} />
 				))}
 			</div>
-		</div>
+		</div></>
 	);
 };
 
