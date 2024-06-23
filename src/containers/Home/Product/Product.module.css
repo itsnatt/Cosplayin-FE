@@ -1,8 +1,11 @@
 /* styles/ProductList.module.css */
 .productList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust the gap between cards if necessary */
+  padding: 20px; /* Add padding if needed */
   }
   
   .productCard {
@@ -16,5 +19,27 @@
   .productCard img {
     max-width: 100%;
     height: auto;
+  }
+
+  .paginationButton {
+    
+    margin-bottom: 12px;
+    padding: 10px 20px;
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .paginationButton:hover {
+    background-color: #1a368e;
+    transform: scale(1.05);
+  }
+  
+  .paginationButton:disabled {
+    background-color: #gray-300;
+    cursor: not-allowed;
   }
   
