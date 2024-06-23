@@ -1,8 +1,165 @@
-import Link from 'next/link';
-import React from 'react';
+// import Link from 'next/link';
+// import React from 'react';
 
+
+// const Register: React.FC = () => {
+//   return (
+//     <section className="bg-white">
+//       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
+//         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
+//           <img
+//             alt=""
+//             src="https://i.pinimg.com/originals/20/25/e4/2025e4a2f153284114061de0c5da9ff3.jpg"
+//             className="absolute inset-0 h-full w-full object-cover opacity-80"
+//           />
+//           <div className="hidden lg:relative lg:block lg:p-12">
+//             <a className="block text-white" href="#">
+//               <span className="sr-only">Home</span>
+//               <svg
+//                 className="h-8 sm:h-10"
+//                 viewBox="0 0 28 24"
+//                 fill="none"
+//                 xmlns="http://www.w3.org/2000/svg"
+//               >
+//               </svg>
+//             </a>
+           
+//             <p className="mt-4 leading-relaxed text-white/90"></p>
+//           </div>
+//         </section>
+//         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+//           <div className="max-w-xl lg:max-w-3xl">
+//           <Link href="/" legacyBehavior>
+//           <a className="flex items-center">
+//             <span className="text-center mt-6 text-2xl font-bold text-black sm:text-3xl md:text-4xl">Welcome to Cosplay.In</span>
+//           </a>
+//         </Link>
+//             <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+//               <div className="col-span-6">
+//                 <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
+//                   Username
+//                 </label>
+//                 <input
+//                   type="text"
+//                   id="FirstName"
+//                   name="first_name"
+//                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+//                 />
+//               </div>
+//               <div className="col-span-6">
+//                 <label htmlFor="Email" className="block text-sm font-medium text-gray-700"> Email </label>
+//                 <input
+//                   type="email"
+//                   id="Email"
+//                   name="email"
+//                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+//                 />
+//               </div>
+//               <div className="col-span-6 sm:col-span-3">
+//                 <label htmlFor="Password" className="block text-sm font-medium text-gray-700"> Password </label>
+//                 <input
+//                   type="password"
+//                   id="Password"
+//                   name="password"
+//                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+//                 />
+//               </div>
+//               <div className="col-span-6 sm:col-span-3">
+//                 <label htmlFor="PasswordConfirmation" className="block text-sm font-medium text-gray-700">
+//                   Password Confirmation
+//                 </label>
+//                 <input
+//                   type="password"
+//                   id="PasswordConfirmation"
+//                   name="password_confirmation"
+//                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+//                 />
+//               </div>
+//               <div className="col-span-6">
+//                 <label htmlFor="MarketingAccept" className="flex gap-4">
+//                   <input
+//                     type="checkbox"
+//                     id="MarketingAccept"
+//                     name="marketing_accept"
+//                     className="size-5 rounded-md border-gray-200 bg-white shadow-sm"
+//                   />
+//                   <span className="text-sm text-gray-700">
+//                     I want to receive emails about events, product updates and company announcements.
+//                   </span>
+//                 </label>
+//               </div>
+//               <div className="col-span-6">
+//                 <p className="text-sm text-gray-500">
+//                   By creating an account, you agree to our
+//                   <a href="#" className="text-gray-700 underline"> terms and conditions </a>
+//                   and
+//                   <a href="#" className="text-gray-700 underline"> privacy policy</a>.
+//                 </p>
+//               </div>
+//               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
+//                 <button
+//                   className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+//                 >
+//                   Create an account
+//                 </button>
+//                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+//                   Already have an account?
+//                   <Link href="/login" className="text-blue-600 font-semibold"> Login</Link>
+                  
+//                 </p>
+//               </div>
+//             </form>
+//           </div>
+//         </main>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default Register;
+
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Register: React.FC = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
+
+  const handleRegister = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError('Password and password confirmation do not match');
+      return;
+    }
+
+    const response = await fetch('https://api.cospl.my.id/api/admin/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Simpan token ke localStorage
+      localStorage.setItem('accessToken', data.token);
+      
+      // Arahkan ke halaman dashboard
+      router.push('/dashboard');
+    } else {
+      // Tampilkan pesan error
+      setError(data.message || 'Registration failed');
+    }
+  };
+
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -23,18 +180,17 @@ const Register: React.FC = () => {
               >
               </svg>
             </a>
-           
             <p className="mt-4 leading-relaxed text-white/90"></p>
           </div>
         </section>
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
-          <Link href="/" legacyBehavior>
-          <a className="flex items-center">
-            <span className="text-center mt-6 text-2xl font-bold text-black sm:text-3xl md:text-4xl">Welcome to Cosplay.In</span>
-          </a>
-        </Link>
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+            <Link href="/" legacyBehavior>
+              <a className="flex items-center">
+                <span className="text-center mt-6 text-2xl font-bold text-black sm:text-3xl md:text-4xl">Welcome to Cosplay.In</span>
+              </a>
+            </Link>
+            <form onSubmit={handleRegister} className="mt-8 grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
                   Username
@@ -43,7 +199,9 @@ const Register: React.FC = () => {
                   type="text"
                   id="FirstName"
                   name="first_name"
-                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="inputan mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
               <div className="col-span-6">
@@ -52,7 +210,9 @@ const Register: React.FC = () => {
                   type="email"
                   id="Email"
                   name="email"
-                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="inputan mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -61,7 +221,9 @@ const Register: React.FC = () => {
                   type="password"
                   id="Password"
                   name="password"
-                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="inputan mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -72,9 +234,16 @@ const Register: React.FC = () => {
                   type="password"
                   id="PasswordConfirmation"
                   name="password_confirmation"
-                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="inputan mt-1 w-full pl-3 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
+              {error && (
+                <div className="col-span-6">
+                  <p className="text-sm text-red-500">{error}</p>
+                </div>
+              )}
               <div className="col-span-6">
                 <label htmlFor="MarketingAccept" className="flex gap-4">
                   <input
@@ -98,6 +267,7 @@ const Register: React.FC = () => {
               </div>
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                 <button
+                  type="submit"
                   className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                 >
                   Create an account
@@ -105,7 +275,6 @@ const Register: React.FC = () => {
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                   Already have an account?
                   <Link href="/login" className="text-blue-600 font-semibold"> Login</Link>
-                  
                 </p>
               </div>
             </form>

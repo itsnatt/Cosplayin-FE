@@ -97,19 +97,21 @@ const ProductList: React.FC = () => {
   }
 
   return (
-    <div>
-      <div className="flex justify-center container mt-8 mb-0 ml-40 px-4 py-8">
-        <Search
-          keyword={keyword}
-          setKeyword={setKeyword}
-          category={category}
-          setCategory={setCategory}
-          size={size}
-          setSize={setSize}
-          handleSearch={handleSearch}
-        />
+    <>
+      <div className="flex flex-col items-center">
+        <div className="flex justify-center w-full max-w-2xl px-4 py-6" style={{ marginTop: '73px' }}>
+          <Search
+            keyword={keyword}
+            setKeyword={setKeyword}
+            category={category}
+            setCategory={setCategory}
+            size={size}
+            setSize={setSize}
+            handleSearch={handleSearch}
+          />
+        </div>
       </div>
-      <div className='pt-10 bg-gray-100'>
+      <div className="flex flex-col items-center min-h-screen pt-10 bg-gray-100">
         <div className={styles.productList}>
           {currentProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
@@ -128,14 +130,14 @@ const ProductList: React.FC = () => {
           </span>
           <button
             onClick={handleNextPage}
-            disabled={startIndex + itemsPerPage >= currentProducts.length}
+            disabled={currentPage === totalPages}
             className={`${styles.paginationButton}`}
           >
             Next
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

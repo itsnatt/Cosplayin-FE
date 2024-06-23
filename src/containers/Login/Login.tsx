@@ -76,7 +76,7 @@ function Login() {
             <div className="col-span-6">
                <label htmlFor="Email" className="block text-sm font-medium text-gray-700"> Email </label>
                
-              <input type="text" name="username" placeholder="Email or Username" onChange={(event) => setEmail(event.target.value)} required className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+              <input type="text" name="username" placeholder="Input your email" onChange={(event) => setEmail(event.target.value)} required className="inputan mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
      
             </div>
             <div className="col-span-6">
@@ -85,7 +85,8 @@ function Login() {
                 type="password"
                 placeholder="Input your password"
                 onChange={(event) => setPassword(event.target.value)}
-                className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                
+                className="inputan mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
               />
             </div>
             <div className="col-span-6">
@@ -98,12 +99,13 @@ function Login() {
             </div>
             <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
               <input
+                
                 className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white text-blod transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                 type="submit" value="LOGIN"
               />
               <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                 No account?
-                <Link href="/register" className="text-gray-700 underline" legacyBehavior> Sign Up</Link>
+                <Link href="/register" className="text-blue-600 font-semibold"> Sign Up</Link>
                 
               </p>
             </div>
