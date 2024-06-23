@@ -1,7 +1,7 @@
 import React from 'react';
 import Auth from 'src/auth/Auth';
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
   return (
     <div>
       <h1>Dashboard</h1>

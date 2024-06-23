@@ -38,7 +38,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/auth/Auth.js"  ],
   "exclude": [
     "node_modules"
   ]

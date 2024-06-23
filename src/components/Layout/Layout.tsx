@@ -4,13 +4,14 @@ import Footer from './Footer/Footer'
 
 type Props = {
     children: ReactNode
+    noFooter?: boolean
 }
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, noFooter = false  }: Props) => {
     return (
         <>
             <NavBar />
             {children}
-            <Footer />
+            {noFooter ? null : <Footer />}
         </>
     )
 }
