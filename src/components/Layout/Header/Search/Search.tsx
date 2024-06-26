@@ -8,6 +8,8 @@ interface SearchProps {
   size: string;
   setSize: (size: string) => void;
   handleSearch: (event: FormEvent<HTMLFormElement>) => void;
+  categories: string[];
+  sizes: string[];
 }
 
 const Search: React.FC<SearchProps> = ({
@@ -18,6 +20,8 @@ const Search: React.FC<SearchProps> = ({
   size,
   setSize,
   handleSearch,
+  categories,
+  sizes,
 }) => {
   return (
     <form
@@ -35,10 +39,9 @@ const Search: React.FC<SearchProps> = ({
           className='bg-gray-100 rounded-md border-gray-300 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400'
         >
           <option value=''>Semua</option>
-          <option value='Kostum Fullset'>Kostum Fullset</option>
-          <option value='Kostum Only'>Kostum Only</option>
-          <option value='Aksesoris'>Aksesoris</option>
-          <option value='Wig'>Wig</option>
+          {categories.map(cat => (
+            <option key={cat} value={cat}>{cat}</option>
+          ))}
         </select>
       </div>
       <div className='flex flex-col pr-2'>
@@ -52,10 +55,9 @@ const Search: React.FC<SearchProps> = ({
           className='bg-gray-100 rounded-md border-gray-300 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400'
         >
           <option value=''>Semua</option>
-          <option value='S'>S</option>
-          <option value='M'>M</option>
-          <option value='L'>L</option>
-          <option value='XL'>XL</option>
+          {sizes.map(s => (
+            <option key={s} value={s}>{s}</option>
+          ))}
         </select>
       </div>
       <div className='flex flex-col pr-2'>
