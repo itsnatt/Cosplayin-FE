@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import React from "react"
 
 const NavBar = () => {
+  const router = useRouter();
+
   useEffect(() => {
     const toggleMenuButton = document.getElementById('toggleMenuButton');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -25,7 +28,7 @@ const NavBar = () => {
         </Link>
         <div className="mt-2 sm:mt-0 sm:flex md:order-2">
           <Link href="/login" legacyBehavior>
-            <a className="rounde mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg">Login</a>
+            <a className="rounde mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg">Login</a>
           </Link>
           <Link href="/register" legacyBehavior>
             <a className="rounde mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">Register</a>
@@ -35,17 +38,17 @@ const NavBar = () => {
           <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium">
             <li>
               <Link href="/" legacyBehavior>
-                <a className="block rounded bg-blue-700 py-2 pl-3 pr-4 text-white md:bg-transparent md:p-0 md:text-blue-700" aria-current="page">Home</a>
+                <a className={`block rounded py-2 pl-3 pr-4 md:p-0 ${router.pathname === '/' ? 'text-blue-700' : 'text-gray-700'} md:hover:text-blue-700 hover:bg-gray-100 md:hover:bg-transparent`}>Home</a>
               </Link>
             </li>
             <li>
               <Link href="/about" legacyBehavior>
-                <a className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700">About</a>
+                <a className={`block rounded py-2 pl-3 pr-4 md:p-0 ${router.pathname === '/about' ? 'text-blue-700' : 'text-gray-700'} md:hover:text-blue-700 hover:bg-gray-100 md:hover:bg-transparent`}>About</a>
               </Link>
             </li>
             <li>
               <Link href="/contact" legacyBehavior>
-                <a className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700">Contact</a>
+                <a className={`block rounded py-2 pl-3 pr-4 md:p-0 ${router.pathname === '/contact' ? 'text-blue-700' : 'text-gray-700'} md:hover:text-blue-700 hover:bg-gray-100 md:hover:bg-transparent`}>Contact</a>
               </Link>
             </li>
           </ul>

@@ -24,7 +24,7 @@ function Login() {
         console.log("Login successful");
         // window.location.href = "/";
         response.json().then((data) => {
-          window.location.href = "/dashboard";
+          window.location.href = "/dashboardAdmin";
           console.log(data);
           localStorage.setItem("token", data);
           localStorage.setItem("user", JSON.stringify(data.user));
@@ -98,11 +98,11 @@ function Login() {
               </p>
             </div>
             <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-              <input
-                
-                className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white text-blod transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-                type="submit" value="LOGIN"
-              />
+              <button type="submit" className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white text-blod transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500" 
+              >
+                LOGIN
+              </button>
+             
               <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                 No account?
                 <Link href="/register" className="text-blue-600 font-semibold"> Sign Up</Link>
