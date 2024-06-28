@@ -1,5 +1,6 @@
 import React from 'react';
 import Auth from 'src/auth/Auth';
+import withAuth from 'src/auth/withAuth';
 
 const Sidebar: React.FC<{ setCurrentView: (view: string) => void }> = ({ setCurrentView }) => {
   return (
@@ -53,12 +54,12 @@ const Sidebar: React.FC<{ setCurrentView: (view: string) => void }> = ({ setCurr
                 </li>
 
                 <li>
-                  <a
-                    href="#"
-                    className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 no-underline"
+                <button
+                    onClick={() => setCurrentView('addProduct')}
+                    className="block text-left w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 no-underline"
                   >
-                    Add Product
-                  </a>
+                    Add Products
+                  </button>
                 </li>
               </ul>
             </details>
@@ -74,6 +75,15 @@ const Sidebar: React.FC<{ setCurrentView: (view: string) => void }> = ({ setCurr
             </a>
           </li>
 
+          <li>
+            <a
+              onClick={() => handleLogout()}
+              className="flex items-center rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 no-underline"
+            >
+              <i className="fa-solid fa-right-from-bracket mr-2"></i>
+              <span>Logout</span>
+            </a>
+          </li>
           
         </ul>
       </div>
@@ -103,4 +113,10 @@ const Sidebar: React.FC<{ setCurrentView: (view: string) => void }> = ({ setCurr
   )
 }
 
-export default Sidebar;
+const handleLogout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  window.location.href = '/login';
+};
+
+export default withAuth(Sidebar);
