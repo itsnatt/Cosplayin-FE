@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import styles from './ProductDetail.module.css'; // Ensure you have a CSS module file for styling
+import styles from './ProductDetail.module.css'; 
 
 const ProductDetail = () => {
   const router = useRouter();
@@ -48,6 +48,7 @@ const ProductDetail = () => {
             <h1 className={`text-gray-900 text-3xl title-font font-medium mb-1 ${styles.title}`}>{product.namaproduk}</h1>
             <p className={`leading-relaxed ${styles.description}`}>{product.deskripsi}</p>
             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
+
               <div className={`flex ${styles.sizes}`}>
                 <span className="mr-2">{product.ukuran1}</span>
                 <span className="mr-2">{product.ukuran2}</span>
