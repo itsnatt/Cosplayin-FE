@@ -11,3 +11,26 @@
 	text-align: center;
 	background-color: aqua;
 }
+
+.marginBottom4 {
+	margin-bottom: 1rem; /* Sesuaikan nilai ini sesuai kebutuhan */
+  }
+  
+  .marginTop4 {
+	margin-top: 1rem; /* Sesuaikan nilai ini sesuai kebutuhan */
+  }
+
+  .smallText {
+	font-size: 0.800rem; /* Ukuran font, bisa disesuaikan */
+  }
+  
+  .readMoreButton {
+	color: #1E40AF; /* Warna biru */
+	margin-top: 0.5rem;
+	text-decoration: none; /* Menghilangkan garis bawah default */
+	cursor: pointer;
+  }
+  
+  .readMoreButton:hover {
+	text-decoration: underline; /* Menambahkan garis bawah saat hover */
+  }
