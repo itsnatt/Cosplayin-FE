@@ -70,18 +70,11 @@ const Sidebar: React.FC<{ setCurrentView: (view: string) => void }> = ({ setCurr
               className="flex items-center rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 no-underline"
             >
               <i className="fa-regular fa-user mr-2"></i>
-              <span>Customers</span>
+              <span>Merchants</span>
             </a>
           </li>
 
-          <li>
-            <a
-              href="#"
-              className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 no-underline"
-            >
-              Promotion
-            </a>
-          </li>
+          
         </ul>
       </div>
 

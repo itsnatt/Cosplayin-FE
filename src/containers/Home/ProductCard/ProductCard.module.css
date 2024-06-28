@@ -1,15 +1,13 @@
-
 .productList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
 }
 
 .productCard {
-  border: 1px solid #ddd;
-  padding: 20px;
-  width: 200px;
-  text-align: center;
-  background-color: aqua;
+	border: 1px solid #ddd;
+	padding: 20px;
+	width: 200px;
+	text-align: center;
+	background-color: aqua;
 }
-

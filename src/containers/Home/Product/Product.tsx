@@ -123,8 +123,8 @@ const ProductList: React.FC = () => {
             setSize={setSize}
             handleSearch={handleSearch}
             categories={categories}
-          sizes={sizes}
-        />
+            sizes={sizes}
+          />
         </div>
       </div>
       <div className="flex flex-col items-center min-h-screen pt-10 bg-gray-100">
