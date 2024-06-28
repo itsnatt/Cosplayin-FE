@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import Auth from 'src/auth/Auth'; // Make sure to adjust the path as necessary
 import DashboardInfo from './DashboardInfo/DashboardInfo';
 import MyProducts from 'containers/DashboardAdmin/MyProducts/MyProducts';
-import AddProduct from './AddProduct/AddProduct';
-import withAuth from 'src/auth/withAuth';
 
 const DashboardAdmin = () => {
   const [currentView, setCurrentView] = useState('dashboard');
@@ -18,7 +16,6 @@ const DashboardAdmin = () => {
         <div className="flex-1 p-4 overflow-y-auto">
           {currentView === 'dashboard' && <DashboardInfo />}
           {currentView === 'myProducts' && <MyProducts />}
-          {currentView === 'addProduct' && <AddProduct />}
           {/* Add more conditions for different views as needed */}
         </div>
       </div>
