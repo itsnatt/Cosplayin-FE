@@ -18,7 +18,6 @@ interface Product {
 }
 
 const MyProducts = () => {
-
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -29,7 +28,7 @@ const MyProducts = () => {
   const [keyword, setKeyword] = useState('');
   const [category, setCategory] = useState('');
   const [size, setSize] = useState('');
-  const itemsPerPage = 4;
+  const itemsPerPage = 8;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -89,11 +88,19 @@ const MyProducts = () => {
   };
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   const handlePreviousPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
   };
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -112,6 +119,36 @@ const MyProducts = () => {
     <main className="flex-1 p-6">
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-lg font-bold mb-6">Produk Saya</h2>
+        <form onSubmit={handleSearch} className="mb-6">
+          <input
+            type="text"
+            placeholder="Search by keyword"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            className="border rounded p-2 mr-2"
+          />
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="border rounded p-2 mr-2"
+          >
+            <option value="">All Categories</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+          <select
+            value={size}
+            onChange={(e) => setSize(e.target.value)}
+            className="border rounded p-2 mr-2"
+          >
+            <option value="">All Sizes</option>
+            {sizes.map((size) => (
+              <option key={size} value={size}>{size}</option>
+            ))}
+          </select>
+          <button type="submit" className="bg-blue-500 text-white p-2 rounded">Search</button>
+        </form>
         <table className="w-full">
           <thead>
             <tr className="text-left text-gray-600">
@@ -122,11 +159,8 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {currentProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))} */}
             {currentProducts.map((product, index) => (
-              <tr key={product.id}  className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-gray-100'} border-b`}>
+              <tr key={product.id} className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-gray-100'} border-b`}>
                 <td className="p-3 flex items-center font-semibold">
                   <span className="mr-2">{product.id}</span>
                 </td>
@@ -137,10 +171,10 @@ const MyProducts = () => {
                 <td className="p-3 font-semibold">{product.harga}</td>
                 <td className="p-3 flex space-x-2">
                   <button className="text-blue-600">
-                    <i className="fa-regular fa-pen-to-square text-transparent"></i>
+                    <i className="fa-regular fa-pen-to-square text-xl"></i>
                   </button>
                   <button className="text-red-600">
-                    <i className="fa-regular fa-trash-can text-transparent"></i>
+                    <i className="fa-regular fa-trash-can text-xl"></i>
                   </button>
                 </td>
               </tr>
@@ -149,40 +183,36 @@ const MyProducts = () => {
         </table>
         <div className="mt-4 flex justify-center">
           <nav className="inline-flex rounded-md shadow">
-            <a
-              href="#"
+            <button
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
               className="px-3 py-2 bg-white border border-gray-300 text-sm leading-5 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
             >
               &lt;
-            </a>
-            <a
-              href="#"
-              className="px-3 py-2 bg-white border-t border-b border-gray-300 text-sm leading-5 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
-            >
-              1
-            </a>
-            <a
-              href="#"
-              className="px-3 py-2 bg-white border-t border-b border-gray-300 text-sm leading-5 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
-            >
-              2
-            </a>
-            <a
-              href="#"
-              className="px-3 py-2 bg-white border-t border-b border-gray-300 text-sm leading-5 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
-            >
-              3
-            </a>
-            <a
-              href="#"
+            </button>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => handlePageChange(index + 1)}
+                className={`px-3 py-2 bg-white border-t border-b border-gray-300 text-sm leading-5 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 ${
+                  currentPage === index + 1 ? 'bg-gray-200' : ''
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
               className="px-3 py-2 bg-white border border-gray-300 text-sm leading-5 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
             >
               &gt;
-            </a>
+            </button>
           </nav>
         </div>
       </div>
     </main>
-  )
-}
-export default MyProducts
+  );
+};
+
+export default MyProducts;
