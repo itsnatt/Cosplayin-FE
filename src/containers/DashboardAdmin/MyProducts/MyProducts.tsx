@@ -165,7 +165,7 @@ const MyProducts = () => {
                   <span className="mr-2">{product.id}</span>
                 </td>
                 <td className="p-3 font-semibold">
-                <img src={'https://api.cospl.my.id/image/' + product.gambar} /> alt={product.namaproduk} className="h-10 w-10 mx-3 rounded" />
+                <img src={'https://api.cospl.my.id/image/' + product.gambar}  alt={product.namaproduk} className="h-10 w-10 mx-3 rounded" />
                   <span>{product.namaproduk}</span>
                 </td>
                 <td className="p-3 font-semibold">{product.harga}</td>
