@@ -1,25 +1,6 @@
-// import React from 'react';
-// import './ProductCard.module.css';
-
-// const ProductCard = ({ product }) => {
-//   return (
-//     <div className="ml-10 my-10 w-[234px] h-[451px] rounded-xl bg-white p-6 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300">
-//       <h2>{product.namaproduk}</h2>
-//       {/* <p>{product.deskripsi}</p> */}
-//       <p>Price: {product.harga}</p>
-//       <p>Sizes: {product.ukuran1}, {product.ukuran2}, {product.ukuran3}</p>
-//       <p>Categories: {product.katagori1}, {product.katagori2}, {product.katagori3}</p>
-//       <p><a href={product.link_produk}>Product Link</a></p>
-//       <img src={product.gambar} alt={product.namaproduk} width="100" />
-//     </div>
-//   );
-// };
-
-// export default ProductCard;
-
-// components/ProductCard/ProductCard.tsx
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image'; // Import Image dari next/image
 import styles from './ProductCard.module.css';
 
 interface Product {
@@ -41,18 +22,27 @@ interface ProductCardProps {
   product: Product;
 }
 
+const formatHarga = (harga: number) => {
+  if (harga >= 1000) {
+    return `${Math.round(harga / 1000)}K`;
+  }
+  return harga.toString();
+}
+
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const imagePath = `/image/${product.gambar}`;
+
   return (
     <div className="ml-10 my-10 w-[234px] h-[451px] rounded-xl bg-white p-6 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300">
-      <h2>{product.namaproduk}</h2>
-      {/* <p>{product.deskripsi}</p> */}
-      <p>Price: {product.harga}</p>
-      <p>Sizes: {product.ukuran1}, {product.ukuran2}, {product.ukuran3}</p>
-      <p>Categories: {product.katagori1}, {product.katagori2}, {product.katagori3}</p>
-      <p><a href={product.link_produk}>Product Link</a></p>
-      <img src={product.gambar} alt={product.namaproduk} width="100" />
+      <Image src={imagePath} alt={product.namaproduk} width={300} height={300} className={styles.imageFullCover}/>
+      <h2 className='font-medium'>{product.namaproduk}</h2>
+      <p className={styles.textSize}>Sizes: {product.ukuran1}, {product.ukuran2}, {product.ukuran3}</p>
+      <p>
+        <span className={styles.textBlack}>Price:</span> 
+        <span className={styles.textBlue500}> {formatHarga(product.harga)}</span>
+      </p>
       <Link href={`/productdetail/${product.id}`} legacyBehavior>
-        <a className="text-blue-500 hover:underline">Lihat Detail</a>
+        <a className={styles.linkButton}>Lihat Detail</a>
       </Link>
     </div>
   );
