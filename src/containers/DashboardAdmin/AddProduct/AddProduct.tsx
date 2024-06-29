@@ -14,7 +14,7 @@ const AddProduct = () => {
     katagori1: '',
     katagori2: '',
     katagori3: '',
-    gambar: '',
+    gambar: null, // Gunakan null untuk penanganan unggah file
     suka: '',
     visit: '',
     owner_id: '',
@@ -23,38 +23,65 @@ const AddProduct = () => {
   });
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
+    if (e.target.name === 'gambar') {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.files[0] // Simpan objek File
+      });
+    } else {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.value
+      });
+    }
   };
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Send form data along with image name to the API
-    const productData = { ...form };
-    
+
+    const formData = new FormData();
+    formData.append('namaproduk', form.namaproduk);
+    formData.append('ukuran1', form.ukuran1);
+    formData.append('ukuran2', form.ukuran2);
+    formData.append('ukuran3', form.ukuran3);
+    formData.append('link_produk', form.link_produk);
+    formData.append('harga', form.harga);
+    formData.append('satuan', form.satuan);
+    formData.append('deskripsi', form.deskripsi);
+    formData.append('katagori1', form.katagori1);
+    formData.append('katagori2', form.katagori2);
+    formData.append('katagori3', form.katagori3);
+    formData.append('gambar', form.gambar); // Lampirkan objek File
+    formData.append('suka', form.suka); // Lampirkan objek File
+    formData.append('visit', form.visit); // Lampirkan objek File
+    formData.append('owner_id', form.owner_id); // Lampirkan objek File
+    formData.append('admin_id', form.admin_id); // Lampirkan objek File
+    formData.append('categoory_id', form.categoory_id); // Lampirkan objek File
+
+
+
     try {
       const token = localStorage.getItem('token');
-      
-      // Make sure token is available
+
+      // Pastikan token tersedia
       if (!token) {
-        throw new Error('No token available');
+        throw new Error('Tidak ada token tersedia');
       }
-      
-      const response = await axios.post('https://api.cospl.my.id/api/product/', productData, {
+
+      const response = await axios.post('https://api.cospl.my.id/api/product/', formData, {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data', // Gunakan multipart/form-data untuk unggah file
           Authorization: `Bearer ${token}`
         }
       });
+
       console.log(response.data);
-      console.log('SUCCESS ADD PRODUCT');
+      console.log('BERHASIL MENAMBAHKAN PRODUK');
     } catch (error) {
       console.error('Error uploading product:', error);
+      console.log('Response data:', error.response.data); // Menampilkan data respons dari server
     }
+    
   };
 
   return (
@@ -69,21 +96,21 @@ const AddProduct = () => {
             <label className="block mb-2 text-sm font-medium text-gray-900">Ukuran</label>
             <div className="flex flex-row gap-2">
               <select name="ukuran1" value={form.ukuran1} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-                <option value="">Size 1</option>
+                <option value="">Ukuran 1</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
                 <option value="L">L</option>
                 <option value="XL">XL</option>
               </select>
               <select name="ukuran2" value={form.ukuran2} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-                <option value="">Size 2</option>
+                <option value="">Ukuran 2</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
                 <option value="L">L</option>
                 <option value="XL">XL</option>
               </select>
               <select name="ukuran3" value={form.ukuran3} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-                <option value="">Size 3</option>
+                <option value="">Ukuran 3</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
                 <option value="L">L</option>
@@ -121,7 +148,7 @@ const AddProduct = () => {
           <textarea id="deskripsi" name="deskripsi" value={form.deskripsi} onChange={handleChange} className="resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="lorem ipsum"></textarea>
         </div>
         <div className="mb-6">
-          <label className="block mb-2 text-sm font-medium text-gray-900">Katagori</label>
+          <label className="block mb-2 text-sm font-medium text-gray-900">Kategori</label>
           <div className="flex flex-row gap-2">
             <select name="katagori1" value={form.katagori1} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
               <option value="">Kategori 1</option>
@@ -159,7 +186,6 @@ const AddProduct = () => {
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-900">Gambar</label>
           <input type="file" name="gambar" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-          {/* No preview needed for file name-only submission */}
         </div>
         <button type="submit" className="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
       </form>
