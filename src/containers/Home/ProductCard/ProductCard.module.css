@@ -6,8 +6,46 @@
 
 .productCard {
 	border: 1px solid #ddd;
-	padding: 20px;
+	padding: 10px;
 	width: 200px;
 	text-align: center;
 	background-color: aqua;
 }
+
+.textBlack {
+	color: black;
+	font-size: 20px
+  }
+  
+  .textBlue500 {
+	color: #3b82f6;
+	font-size: 20px;
+  }
+
+.textSize {
+	color: grey;
+}
+
+.linkButton {
+	display: block;
+	width: 100%;
+	margin-top: 110px; 
+	margin-bottom: 8px;
+	color: #3b82f6; 
+	font-weight: medium; 
+	text-align: center; 
+	text-decoration: none;
+	cursor: pointer; 
+  }
+  
+  .linkButton:hover {
+	text-decoration: underline; 
+  }
+  
+  .imageFullCover {
+	position: relative;
+	width: 100%;
+	height: auto;
+	overflow: hidden;	
+  }
+  

@@ -31,7 +31,7 @@ const ProductList: React.FC = () => {
   const [keyword, setKeyword] = useState('');
   const [category, setCategory] = useState('');
   const [size, setSize] = useState('');
-  const itemsPerPage = 4;
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const fetchProducts = async () => {
