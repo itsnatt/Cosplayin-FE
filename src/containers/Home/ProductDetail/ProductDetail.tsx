@@ -31,6 +31,10 @@ const ProductDetail = () => {
     router.back();
   };
 
+  const goToMercant = () => {
+    router.push(`${product.link_produk}`);
+  };
+
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
@@ -52,7 +56,7 @@ const ProductDetail = () => {
               className={`w-full object-cover object-center rounded border border-gray-200 ${styles.image}`}
               src={product.gambar}
             />
-            <button className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" onClick={goBack}>
+            <button className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" onClick={goToMercant}>
               Link ke Merchant
             </button>
           </div>
