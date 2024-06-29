@@ -10,7 +10,7 @@
 	width: 200px;
 	text-align: center;
 	background-color: aqua;
-}
+} 
 
 .marginBottom4 {
 	margin-bottom: 1rem; /* Sesuaikan nilai ini sesuai kebutuhan */
@@ -34,3 +34,39 @@
   .readMoreButton:hover {
 	text-decoration: underline; /* Menambahkan garis bawah saat hover */
   }
+.image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #666;
+  }
+  
+  .sizes span {
+    font-size: 1rem;
+    color: #333;
+    margin-right: 0.5rem;
+  }
+  
+  .price {
+    font-size: 1.5rem;
+    color: #0c0909;
+    margin-top: 1rem;
+  }
+  
+  .categories span {
+    font-size: 1rem;
+    color: #333;
+    margin-right: 0.5rem;
+  }
+  
