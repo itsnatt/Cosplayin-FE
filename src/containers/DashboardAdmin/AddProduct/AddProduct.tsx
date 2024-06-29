@@ -21,8 +21,6 @@ const AddProduct = () => {
     admin_id: '',
     categoory_id: ''
   });
-  const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
 
   const handleChange = (e) => {
     setForm({
@@ -31,27 +29,29 @@ const AddProduct = () => {
     });
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-    setImagePreview(URL.createObjectURL(file));
-  };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    for (const key in form) {
-      formData.append(key, form[key]);
-    }
-    formData.append('dropzone-file', image);
-
+    
+    // Send form data along with image name to the API
+    const productData = { ...form };
+    
     try {
-      const response = await axios.post('https://api.cospl.my.id/api/product/', formData, {
+      const token = localStorage.getItem('token');
+      
+      // Make sure token is available
+      if (!token) {
+        throw new Error('No token available');
+      }
+      
+      const response = await axios.post('https://api.cospl.my.id/api/product/', productData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         }
       });
       console.log(response.data);
+      console.log('SUCCESS ADD PRODUCT');
     } catch (error) {
       console.error('Error uploading product:', error);
     }
@@ -59,7 +59,7 @@ const AddProduct = () => {
 
   return (
     <div className="container mx-auto">
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit}>
         <div className="grid gap-6 mb-6 lg:grid-cols-2">
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">Nama Produk</label>
@@ -105,6 +105,14 @@ const AddProduct = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900">Satuan</label>
                 <input type="text" id="satuan" name="satuan" value={form.satuan} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="hari / 3 hari / any" required />
               </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900">Suka</label>
+                <input type="number" id="suka" name="suka" value={form.suka} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900">Visit</label>
+                <input type="number" id="visit" name="visit" value={form.visit} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+              </div>
             </div>
           </div>
         </div>
@@ -138,37 +146,22 @@ const AddProduct = () => {
         </div>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-900">Owner ID</label>
-          <input type="text" id="owner_id" name="owner_id" value={form.owner_id} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Owner id" />
+          <input type="text" id="owner_id" name="owner_id" value={form.owner_id} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Owner ID" required />
         </div>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-900">Admin ID</label>
-          <input type="text" id="admin_id" name="admin_id" value={form.admin_id} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Admin id" />
+          <input type="text" id="admin_id" name="admin_id" value={form.admin_id} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Admin ID" required />
         </div>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-900">Category ID</label>
-          <input type="text" id="categoory_id" name="categoory_id" value={form.categoory_id} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Category id" />
+          <input type="text" id="categoory_id" name="categoory_id" value={form.categoory_id} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Category ID" required />
         </div>
-        <div className="flex items-center justify-center w-full mb-6">
-          {imagePreview ? (
-            <img src={imagePreview} alt="Image preview" className="object-contain h-48 w-full" />
-          ) : (
-            <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <svg className="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l-4-4m0 0l4-4m-4 4h18m-7 4l4-4m0 0l-4-4"></path>
-                </svg>
-                <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                <p className="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-              </div>
-              <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} />
-            </label>
-          )}
+        <div className="mb-6">
+          <label className="block mb-2 text-sm font-medium text-gray-900">Gambar</label>
+          <input type="file" name="gambar" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+          {/* No preview needed for file name-only submission */}
         </div>
-        <div className="flex justify-center">
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Submit
-          </button>
-        </div>
+        <button type="submit" className="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
       </form>
     </div>
   );
