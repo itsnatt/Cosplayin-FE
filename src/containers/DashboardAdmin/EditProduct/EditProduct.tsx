@@ -2,27 +2,27 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 interface Product {
-    id: number;
-    namaproduk: string;
-    deskripsi: string;
-    harga: number;
-    satuan: string;
-    ukuran1: string;
-    ukuran2: string;
-    ukuran3: string;
-    katagori1: string;
-    katagori2: string;
-    katagori3: string;
-    link_produk: string;
-    gambar: string;
-    suka: number;
-    visit: number;
-    owner_id: string;
-    admin_id: string;
-    categoory_id: string;
-  }
+  id: number;
+  namaproduk: string;
+  deskripsi: string;
+  harga: number;
+  satuan: string;
+  ukuran1: string;
+  ukuran2: string;
+  ukuran3: string;
+  katagori1: string;
+  katagori2: string;
+  katagori3: string;
+  link_produk: string;
+  gambar: string;
+  suka: number;
+  visit: number;
+  owner_id: string;
+  admin_id: string;
+  categoory_id: string;
+}
 
-  interface EditProductProps {
+interface EditProductProps {
   product: Product;
   onUpdate: () => void;
 }
@@ -40,7 +40,7 @@ const EditProduct = ({ product, onUpdate }: EditProductProps) => {
     katagori1: product.katagori1,
     katagori2: product.katagori2,
     katagori3: product.katagori3,
-    gambar: null,
+    gambar: product.gambar,
     suka: product.suka.toString(),
     visit: product.visit.toString(),
     owner_id: product.owner_id,
@@ -61,7 +61,7 @@ const EditProduct = ({ product, onUpdate }: EditProductProps) => {
       katagori1: product.katagori1,
       katagori2: product.katagori2,
       katagori3: product.katagori3,
-      gambar: null,
+      gambar: product.gambar,
       suka: product.suka.toString(),
       visit: product.visit.toString(),
       owner_id: product.owner_id,

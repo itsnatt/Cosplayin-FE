@@ -31,10 +31,6 @@ const ProductDetail = () => {
     router.back();
   };
 
-  const goToMercant = () => {
-    router.push(`${product.link_produk}`);
-  };
-
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
@@ -54,11 +50,13 @@ const ProductDetail = () => {
             <img
               alt={product.namaproduk}
               className={`w-full object-cover object-center rounded border border-gray-200 ${styles.image}`}
-              src={product.gambar}
+              src={`https://api.cospl.my.id/image/${product.gambar}`}
             />
-            <button className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" onClick={goToMercant}>
+            <Link href={product.link_produk} target='_blank'>
+            <button className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
               Link ke Merchant
             </button>
+            </Link>
           </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h1 className={`text-gray-900 text-3xl title-font font-medium mb-1 ${styles.title}`}>{product.namaproduk}</h1>
