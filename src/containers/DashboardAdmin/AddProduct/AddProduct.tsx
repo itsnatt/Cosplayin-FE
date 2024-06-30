@@ -90,7 +90,7 @@ const AddProduct = () => {
         <div className="grid gap-6 mb-6 lg:grid-cols-2">
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">Nama Produk</label>
-            <input type="text" id="namaproduk" name="namaproduk" value={form.namaproduk} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Yaemiko Bdsm costume" required />
+            <input type="text" id="namaproduk" name="namaproduk" value={form.namaproduk} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Argus Mobil Lejen" required />
           </div>
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">Ukuran</label>
@@ -120,7 +120,7 @@ const AddProduct = () => {
           </div>
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">Link Produk</label>
-            <input type="url" id="link_produk" name="link_produk" value={form.link_produk} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="www.tokopedia.com/pukisop" required />
+            <input type="url" id="link_produk" name="link_produk" value={form.link_produk} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="www.instagram.com/hmfathan" required />
           </div>
           <div>
             <div className="flex flex-row gap-2">
@@ -145,7 +145,7 @@ const AddProduct = () => {
         </div>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-900">Deskripsi</label>
-          <textarea id="deskripsi" name="deskripsi" value={form.deskripsi} onChange={handleChange} className="resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="lorem ipsum"></textarea>
+          <textarea id="deskripsi" name="deskripsi" value={form.deskripsi} onChange={handleChange} className="resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Tuangkan hasil berlogikamu"></textarea>
         </div>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-900">Kategori</label>

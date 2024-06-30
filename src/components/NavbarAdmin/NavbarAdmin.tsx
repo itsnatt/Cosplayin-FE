@@ -23,10 +23,10 @@ const NavbarAdmin: React.FC = () => {
             <a href="/login" className="no-underline flex items-center space-x-2">
               <img
                 className="h-8 w-8 rounded-full"
-                src="https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/p1/144/2023/10/17/WhatsApp-Image-2023-10-17-at-050245-1814274796.jpg"
+                src="https://static.wikia.nocookie.net/virtualyoutuber/images/3/3b/Kobo_Kanaeru_Portrait.png"
                 alt="Profile"
               />
-              <span className="text-gray-600">Yuni Maria</span>
+              <span className="text-gray-600">Anita MaxWynn</span>
             </a>
           </div>
         </div>
