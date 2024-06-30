@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddProduct = () => {
   const [form, setForm] = useState({
@@ -14,7 +16,7 @@ const AddProduct = () => {
     katagori1: '',
     katagori2: '',
     katagori3: '',
-    gambar: null, // Gunakan null untuk penanganan unggah file
+    gambar: null,
     suka: '',
     visit: '',
     owner_id: '',
@@ -26,7 +28,7 @@ const AddProduct = () => {
     if (e.target.name === 'gambar') {
       setForm({
         ...form,
-        [e.target.name]: e.target.files[0] // Simpan objek File
+        [e.target.name]: e.target.files[0]
       });
     } else {
       setForm({
@@ -51,41 +53,58 @@ const AddProduct = () => {
     formData.append('katagori1', form.katagori1);
     formData.append('katagori2', form.katagori2);
     formData.append('katagori3', form.katagori3);
-    formData.append('gambar', form.gambar); // Lampirkan objek File
-    formData.append('suka', form.suka); // Lampirkan objek File
-    formData.append('visit', form.visit); // Lampirkan objek File
-    formData.append('owner_id', form.owner_id); // Lampirkan objek File
-    formData.append('admin_id', form.admin_id); // Lampirkan objek File
-    formData.append('categoory_id', form.categoory_id); // Lampirkan objek File
-
-
+    formData.append('gambar', form.gambar);
+    formData.append('suka', form.suka);
+    formData.append('visit', form.visit);
+    formData.append('owner_id', form.owner_id);
+    formData.append('admin_id', form.admin_id);
+    formData.append('categoory_id', form.categoory_id);
 
     try {
       const token = localStorage.getItem('token');
 
-      // Pastikan token tersedia
       if (!token) {
         throw new Error('Tidak ada token tersedia');
       }
 
       const response = await axios.post('https://api.cospl.my.id/api/product/', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data', // Gunakan multipart/form-data untuk unggah file
+          'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`
         }
       });
 
       console.log(response.data);
-      console.log('BERHASIL MENAMBAHKAN PRODUK');
+      toast.success('Produk berhasil ditambahkan!');
+
+      setForm({
+        namaproduk: '',
+        ukuran1: '',
+        ukuran2: '',
+        ukuran3: '',
+        link_produk: '',
+        harga: '',
+        satuan: '',
+        deskripsi: '',
+        katagori1: '',
+        katagori2: '',
+        katagori3: '',
+        gambar: null,
+        suka: '',
+        visit: '',
+        owner_id: '',
+        admin_id: '',
+        categoory_id: ''
+      });
     } catch (error) {
       console.error('Error uploading product:', error);
-      console.log('Response data:', error.response.data); // Menampilkan data respons dari server
+      toast.error('Gagal menambahkan produk.');
     }
-    
   };
 
   return (
     <div className="container mx-auto">
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <div className="grid gap-6 mb-6 lg:grid-cols-2">
           <div>
@@ -120,7 +139,7 @@ const AddProduct = () => {
           </div>
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">Link Produk</label>
-            <input type="url" id="link_produk" name="link_produk" value={form.link_produk} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="www.instagram.com/hmfathan" required />
+            <input type="text" id="link_produk" name="link_produk" value={form.link_produk} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="instagram.com/hmfathan" required />
           </div>
           <div>
             <div className="flex flex-row gap-2">

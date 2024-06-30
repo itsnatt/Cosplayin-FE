@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Import Image dari next/image
+import Image from 'next/image';
 import styles from './ProductCard.module.css';
 
 interface Product {
@@ -30,11 +30,9 @@ const formatHarga = (harga: number) => {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-
-
   return (
-    <div className="ml-10 my-10 w-[234px] h-[451px] rounded-xl bg-white p-6 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300">
-      <img src={'https://api.cospl.my.id/image/'  + product.gambar} alt={product.namaproduk} width={300} height={300} className={styles.imageFullCover}/>
+    <div className={`ml-10 my-10 w-[234px] h-[451px] rounded-xl bg-white p-6 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ${styles.productCard}`}>
+      <img src={`https://api.cospl.my.id/image/${product.gambar}`} alt={product.namaproduk} width={300} height={300} className={styles.imageFullCover} />
       
       <h2 className='font-medium'>{product.namaproduk}</h2>
       <p className={styles.textSize}>Sizes: {product.ukuran1}, {product.ukuran2}, {product.ukuran3}</p>
