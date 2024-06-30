@@ -30,11 +30,12 @@ const formatHarga = (harga: number) => {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const imagePath = `/image/${product.gambar}`;
+
 
   return (
     <div className="ml-10 my-10 w-[234px] h-[451px] rounded-xl bg-white p-6 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300">
-      <Image src={imagePath} alt={product.namaproduk} width={300} height={300} className={styles.imageFullCover}/>
+      <img src={'https://api.cospl.my.id/image/'  + product.gambar} alt={product.namaproduk} width={300} height={300} className={styles.imageFullCover}/>
+      
       <h2 className='font-medium'>{product.namaproduk}</h2>
       <p className={styles.textSize}>Sizes: {product.ukuran1}, {product.ukuran2}, {product.ukuran3}</p>
       <p>

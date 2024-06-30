@@ -12,7 +12,7 @@ const Sidebar: React.FC<{ setCurrentView: (view: string) => void }> = ({ setCurr
         
             <a
               onClick={() => setCurrentView('dashboard')}
-              className="flex items-center rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 no-underline"
+              className="flex items-center rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 no-underline  cursor-pointer"
             >
               <i className="fa-solid fa-house mr-2"></i>
               <span>Dashboard</span>
@@ -78,7 +78,7 @@ const Sidebar: React.FC<{ setCurrentView: (view: string) => void }> = ({ setCurr
           <li>
             <a
               onClick={() => handleLogout()}
-              className="flex items-center rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 no-underline"
+              className="flex items-center rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 no-underline cursor-pointer"
             >
               <i className="fa-solid fa-right-from-bracket mr-2"></i>
               <span>Logout</span>
