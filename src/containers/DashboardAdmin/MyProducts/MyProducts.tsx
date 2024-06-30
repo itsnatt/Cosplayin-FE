@@ -1,12 +1,15 @@
 import { useEffect, useState, FormEvent } from "react";
 import axios from 'axios';
 import React from "react";
+import EditProduct from "../EditProduct/EditProduct";
+import DeleteProduct from "../DeleteProduct/DeleteProduct";
 
 interface Product {
   id: number;
   namaproduk: string;
   deskripsi: string;
   harga: number;
+  satuan: string;
   ukuran1: string;
   ukuran2: string;
   ukuran3: string;
@@ -15,6 +18,11 @@ interface Product {
   katagori3: string;
   link_produk: string;
   gambar: string;
+  suka: number;
+  visit: number;
+  owner_id: string;
+  admin_id: string;
+  categoory_id: string;
 }
 
 const MyProducts = () => {
@@ -28,6 +36,8 @@ const MyProducts = () => {
   const [keyword, setKeyword] = useState('');
   const [category, setCategory] = useState('');
   const [size, setSize] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
   const itemsPerPage = 8;
 
   useEffect(() => {
@@ -103,6 +113,30 @@ const MyProducts = () => {
     setCurrentPage(pageNumber);
   };
 
+  const handleEdit = (product: Product) => {
+    setSelectedProduct(product);
+    setIsEditing(true);
+  };
+
+  const handleUpdate = () => {
+    setIsEditing(false);
+    setSelectedProduct(null);
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get('https://api.cospl.my.id/api/product/');
+        setProducts(response.data);
+        setFilteredProducts(response.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  };
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
@@ -149,38 +183,40 @@ const MyProducts = () => {
           </select>
           <button type="submit" className="bg-blue-500 text-white p-2 rounded">Search</button>
         </form>
-        <table className="w-full">
-          <thead>
-            <tr className="text-left text-gray-600">
-              <th className="p-3">Id</th>
-              <th className="p-3">Produk</th>
-              <th className="p-3">Harga</th>
-              <th className="p-3">Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentProducts.map((product, index) => (
-              <tr key={product.id} className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-gray-100'} border-b`}>
-                <td className="p-3 flex items-center font-semibold">
-                  <span className="mr-2">{product.id}</span>
-                </td>
-                <td className="p-3 font-semibold">
-                <img src={'https://api.cospl.my.id/image/' + product.gambar}  alt={product.namaproduk} className="h-10 w-10 mx-3 rounded" />
-                  <span>{product.namaproduk}</span>
-                </td>
-                <td className="p-3 font-semibold">{product.harga}</td>
-                <td className="p-3 flex space-x-2">
-                  <button className="text-blue-600">
-                    <i className="fa-regular fa-pen-to-square text-xl"></i>
-                  </button>
-                  <button className="text-red-600">
-                    <i className="fa-regular fa-trash-can text-xl"></i>
-                  </button>
-                </td>
+        {isEditing && selectedProduct ? (
+          <EditProduct product={selectedProduct} onUpdate={handleUpdate} />
+        ) : (
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-gray-600">
+                <th className="p-3">Id</th>
+                <th className="p-3">Produk</th>
+                <th className="p-3">Harga</th>
+                <th className="p-3">Aksi</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentProducts.map((product, index) => (
+                <tr key={product.id} className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-gray-100'} border-b`}>
+                  <td className="p-3 flex items-center font-semibold">
+                    <span className="mr-2">{product.id}</span>
+                  </td>
+                  <td className="p-3 font-semibold">
+                    <img src={`https://api.cospl.my.id/image/${product.gambar}`} alt={product.namaproduk} className="h-10 w-10 mx-3 rounded" />
+                    <span>{product.namaproduk}</span>
+                  </td>
+                  <td className="p-3 font-semibold">{product.harga}</td>
+                  <td className="p-3 flex space-x-2">
+                    <button onClick={() => handleEdit(product)} className="text-blue-600">
+                      <i className="fa-regular fa-pen-to-square text-xl"></i>
+                    </button>
+                    <DeleteProduct productId={product.id} onDelete={handleUpdate} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
         <div className="mt-4 flex justify-center">
           <nav className="inline-flex rounded-md shadow">
             <button
