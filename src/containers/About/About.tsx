@@ -63,22 +63,22 @@ const About = () =>  {
                         <div className="grid grid-cols-12 sm:px-5 gap-x-8 gap-y-16">
                             <div className="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
                                 {<img src="/image/Photo2.JPG" className="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-56 btn-" />}
-                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Improving your day to the MAX</a>
-                                <p className="text-sm text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Kostum Berkualitas Tinggi</a>
+                                <p className="text-sm text-black">Kami menyediakan berbagai kostum cosplay dengan kualitas terbaik, memastikan Anda tampil memukau di setiap acara.</p>
                                 <div className="pt-2 pr-0 pb-0 pl-0">
                                 </div>
                             </div>
                             <div className="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
                                 {<img src="/image/Photo6.JPG" className="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-56 btn-" />}
-                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Improving your day to the MAX</a>
-                                <p className="text-sm text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Beragam Pilihan Kostum</a>
+                                <p className="text-sm text-black">Dari karakter anime, superhero, hingga tokoh-tokoh dari game populer, kami memiliki pilihan kostum yang luas untuk memenuhi berbagai selera dan tema.</p>
                                 <div className="pt-2 pr-0 pb-0 pl-0">
                                 </div>
                             </div>
                             <div className="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
                                 {<img src="/image/Photo4.JPG" className="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-56 btn-" />}
-                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Improving your day to the MAX</a>
-                                <p className="text-sm text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Aksesori Lengkap</a>
+                                <p className="text-sm text-black">Tidak hanya kostum, kami juga menyediakan aksesori lengkap seperti wig, senjata, dan properti lainnya untuk menyempurnakan penampilan cosplay Anda.</p>
                                 <div className="pt-2 pr-0 pb-0 pl-0">
                                 </div>
                             </div>
@@ -106,22 +106,22 @@ const About = () =>  {
                         <div className="grid grid-cols-12 sm:px-5 gap-x-8 gap-y-16">
                             <div className="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
                                 {<img src="/image/event2.JPG" className="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-56 btn-" />}
-                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Improving your day to the MAX</a>
-                                <p className="text-sm text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Cosplay Gathering</a>
+                                <p className="text-sm text-black">Dapatkan informasi terbaru tentang berbagai gathering cosplay di Indonesia, tempat Anda bisa bertemu dan berinteraksi dengan sesama cosplayer.</p>
                                 <div className="pt-2 pr-0 pb-0 pl-0">
                                 </div>
                             </div>
                             <div className="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
                                 {<img src="/image/event3.JPG" className="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-56 btn-" />}
-                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Improving your day to the MAX</a>
-                                <p className="text-sm text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Kompetisi Cosplay</a>
+                                <p className="text-sm text-black">Temukan detail tentang berbagai kompetisi cosplay, mulai dari syarat pendaftaran hingga tips untuk memenangkan kompetisi tersebut.</p>
                                 <div className="pt-2 pr-0 pb-0 pl-0">
                                 </div>
                             </div>
                             <div className="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
                                 {<img src="/image/event4.JPG" className="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-56 btn-" />}
-                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Improving your day to the MAX</a>
-                                <p className="text-sm text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                <a className="text-lg font-bold sm:text-xl md:text-2xl">Workshop dan Seminar</a>
+                                <p className="text-sm text-black">Ikuti berbagai workshop dan seminar yang diadakan oleh para profesional di bidang cosplay, belajar teknik pembuatan kostum, makeup karakter, dan banyak lagi.</p>
                                 <div className="pt-2 pr-0 pb-0 pl-0">
                                 </div>
                             </div>
